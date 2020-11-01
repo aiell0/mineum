@@ -45,7 +45,7 @@ function App() {
 		history.push('/');
 	};
 	const handleGoogleFail = () => {
-		console.log('ya dun fucked up');
+		console.error('Google failed to login.');
 	};
 
 	return (
