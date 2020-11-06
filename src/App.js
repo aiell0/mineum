@@ -4,6 +4,7 @@ import './App.css';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {Switch, Route, Redirect, useHistory} from 'react-router-dom';
 import {useIdleTimer} from 'react-idle-timer';
+import PropTypes from 'prop-types';
 require('dotenv').config();
 
 /**
@@ -122,6 +123,14 @@ function Dashboard({onLogout, firstName, lastName, googleId}) {
       </div>
     </>
   );
+};
+
+// property type checking
+Dashboard.propTypes = {
+  onLogout: PropTypes.func,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  googleId: PropTypes.string,
 };
 
 /**
