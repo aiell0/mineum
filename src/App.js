@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {React, useState, useEffect} from 'react';
 import './App.css';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
