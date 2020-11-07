@@ -1,0 +1,57 @@
+@charset "UTF-8";
+ 
+ 
+ /*# Counter next payout */
+
+#countholder .link{
+  margin-top: 40px;
+}
+ 
+#countholder a{
+  display: inline-block;
+  color: #fff;
+  font-size: 10px;
+  padding: 20px;
+  background: #265;
+  border-radius: 1px;
+  text-decoration: none;
+}
+ 
+#countholder a:hover{
+  background: #487;
+}
+ 
+#countholder{
+ font-family: roboto;
+ color: #fff;
+ display: inline-block;
+ font-weight: 100;
+ text-align: center;
+ font-size: 33px;
+ background-color: #rgba(0,0,0,.05);
+ padding:3px;
+ border-radius: 0px;
+ margin-bottom:1px;
+ line-height: 1.4;
+}
+ 
+ 
+#countholder > div{
+ padding: 4px 10px;
+ border-radius: 0px;
+ background: #343a4061;
+ display: inline-block;
+}
+ 
+#countholder div > span{
+ border-radius: 3px;
+ background: #343a4061;
+ display: inline-block;
+}
+ 
+#countholder .smalltext{
+ padding-top: 5px;
+ font-size: 16px;
+}
+ 
+ 

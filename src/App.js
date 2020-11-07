@@ -1,9 +1,14 @@
+/* eslint-disable max-len */
 import {React, useState, useEffect} from 'react';
-import './App.css';
+import './App.scss';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {Switch, Route, Redirect, useHistory} from 'react-router-dom';
 import {useIdleTimer} from 'react-idle-timer';
 import PropTypes from 'prop-types';
+// import shardStyle from './css/shards.module.css';
+import {Nav, NavItem, NavLink} from 'shards-react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'shards-ui/dist/css/shards.min.css';
 require('dotenv').config();
 
 /**
@@ -59,6 +64,26 @@ function updateRewards(googleId, sessionRewards) {
     console.error(error);
   });
 };
+
+/* eslint-disable require-jsdoc */
+// function FogAnimation() {
+//   return (
+//     <>
+//       <div id="foglayer_01" className="fog">
+//         <div className="image01"></div>
+//         <div className="image02"></div>
+//       </div>
+//       <div id="foglayer_02" className="fog">
+//         <div className="image01"></div>
+//         <div className="image02"></div>
+//       </div>
+//       <div id="foglayer_03" className="fog">
+//         <div className="image01"></div>
+//         <div className="image02"></div>
+//       </div>
+//     </>
+//   );
+// };
 
 /**
  * User Dashboard Page.
@@ -167,7 +192,7 @@ function App() {
       <Route exact path="/">
         {isLoggedIn ? <Redirect to="/dashboard" /> :
           <div className="App">
-            <h1>Mineum</h1>
+            <NavBar />
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Login"
@@ -186,7 +211,30 @@ function App() {
           googleId={googleId}
         />
       </Route>
-    </Switch>
+    </Switch >
+  );
+}
+
+function NavBar() {
+  return (
+    <Nav>
+      <NavItem>
+        <NavLink active href="#">
+          Active
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#">Link</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#">Another Link</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink disabled href="#">
+          Disabled Link
+        </NavLink>
+      </NavItem>
+    </Nav>
   );
 }
 
