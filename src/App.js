@@ -223,7 +223,7 @@ function NavBar() {
   }
 
   return (
-    <Navbar type="dark" theme="primary" expand="md">
+    <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
       <NavbarBrand className="mr-5">
         <img src={logo} className="mr-2" width="auto" height="75" alt="Mineum virtual mobile mining" />
       </NavbarBrand>
@@ -234,19 +234,19 @@ function NavBar() {
             <NavLink active href="#">Miner</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#statistics">Statistics</NavLink>
+            <NavLink href="#statistics"><i className="fas fa-chart-area"></i>Statistics</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#rankings">Rankings</NavLink>
+            <NavLink href="#rankings"><i className="fas fa-chart-area"></i>Rankings</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#rewards">Rewards</NavLink>
+            <NavLink href="#rewards"><i className="fas fa-chart-area"></i>Rewards</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#settings">Settings</NavLink>
+            <NavLink href="#settings"><i className="fas fa-chart-area"></i>Settings</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#information">Information</NavLink>
+            <NavLink href="#information"><i className="fas fa-chart-area"></i>Information</NavLink>
           </NavItem>
         </Nav >
       </Collapse>
