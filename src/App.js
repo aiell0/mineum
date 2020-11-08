@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 import {React, useState, useEffect} from 'react';
-import './App.scss';
+import './App.css';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {Switch, Route, Redirect, useHistory} from 'react-router-dom';
 import {useIdleTimer} from 'react-idle-timer';
 import PropTypes from 'prop-types';
-// import shardStyle from './css/shards.module.css';
-import {Nav, NavItem, NavLink} from 'shards-react';
+import {Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'shards-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
+import logo from './images/MineumlogoBW-03.png';
 require('dotenv').config();
 
 /**
@@ -216,25 +216,41 @@ function App() {
 }
 
 function NavBar() {
+  const [collapseOpen, setCollapseOpen] = useState(false);
+
+  function toggleNavbar() {
+    setCollapseOpen(!collapseOpen);
+  }
+
   return (
-    <Nav>
-      <NavItem>
-        <NavLink active href="#">
-          Active
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="#">Link</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="#">Another Link</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink disabled href="#">
-          Disabled Link
-        </NavLink>
-      </NavItem>
-    </Nav>
+    <Navbar type="dark" theme="primary" expand="md">
+      <NavbarBrand className="mr-5">
+        <img src={logo} className="mr-2" width="auto" height="75" alt="Mineum virtual mobile mining" />
+      </NavbarBrand>
+      <NavbarToggler onClick={toggleNavbar} />
+      <Collapse open={collapseOpen} navbar>
+        <Nav navbar>
+          <NavItem>
+            <NavLink active href="#">Miner</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#statistics">Statistics</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#rankings">Rankings</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#rewards">Rewards</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#settings">Settings</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#information">Information</NavLink>
+          </NavItem>
+        </Nav >
+      </Collapse>
+    </Navbar >
   );
 }
 
