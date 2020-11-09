@@ -5,10 +5,15 @@ import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {Switch, Route, Redirect, useHistory} from 'react-router-dom';
 import {useIdleTimer} from 'react-idle-timer';
 import PropTypes from 'prop-types';
-import {Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'shards-react';
+import {Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler, Collapse, Container, Row, Col, Card, CardBody, CardText, Progress} from 'shards-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
-import logo from './images/MineumlogoBW-03.png';
+import navLogo from './images/MineumlogoBW-03.png';
+import bigLogo from './images/Mineumlogo1.png';
+import madeForSolanaLogo from './images/madeforsolana.png';
+import joinOnDiscordLogo from './images/joinondiscord.png';
+import forAndroidLogo from './images/forandroid.png';
+import gnomeIdleGif from './images/gnomeidle.gif';
 require('dotenv').config();
 
 /**
@@ -138,6 +143,24 @@ function Dashboard({onLogout, firstName, lastName, googleId}) {
       <h1>Name: {firstName} {lastName}</h1>
       <h1>Rewards This Epoch: {rewardsThisEpoch} SOL</h1>
       <h1>Rewards This Session: {reward} SOL</h1>
+      <Col sm={'12'} md={'5'} lg={'4'} className={'mt-auto'}>
+        <br></br>
+        <Card className="mb-4">
+          <CardBody>
+            <img src={gnomeIdleGif} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
+            <CardText>
+              <i className="fas fa-clock"></i>Mined time: <b>00:00:00</b> <br /> <font size="2">Counts up your minded time</font>
+              <Progress bar value='75'></Progress>
+            </CardText>
+            <CardText>
+              <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br /> <font size="2"><b>#1</b> user343, <b>#2</b> @user345, <b>#3</b> user123</font>
+            </CardText>
+            <CardText>
+              <i className="fas fa-users"></i>Active users: <b>219</b>
+            </CardText>
+          </CardBody>
+        </Card>
+      </Col>
       <div className="container">
         <GoogleLogout
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -193,6 +216,21 @@ function App() {
         {isLoggedIn ? <Redirect to="/dashboard" /> :
           <div className="App">
             <NavBar />
+            <Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
+              <Row>
+                <Col sm={'12'} md={'5'} lg={'5'} className={'mt-auto mb-auto mr-3'}>
+                  <img src={bigLogo} width="100%" height="auto" alt="" />
+                  <br></br>
+                  <p className="text-muted">Mineum is a virtual mining initiative and community on the Solana Blockchain. Users get rewarded based on there committed time. To use Mineum you need to have a free <a href="https://solflare.com/"><b>Solana wallet</b></a> and a <a href="https://google.com/"><b>Google account.</b></a></p>
+                  <p className="text-muted">Login now and start to earn your first <a href="https://solflare.com/"><b>SOL</b></a> coins, or <a href="https://solflare.com/"><b>download</b></a> the Mineum Android application.</p>
+                  <div className="d-block mt-4">
+                    <a href="https://solana.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={madeForSolanaLogo} alt="" /></a>
+                    <a href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={joinOnDiscordLogo} alt="" /></a>
+                    <a href="https://laiello.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={forAndroidLogo} alt="" /></a>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Login"
@@ -202,7 +240,7 @@ function App() {
             />,
           </div>
         }
-      </Route>
+      </Route >
       <Route path="/dashboard">
         <Dashboard
           onLogout={handleLogout}
@@ -225,7 +263,7 @@ function NavBar() {
   return (
     <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
       <NavbarBrand className="mr-5">
-        <img src={logo} className="mr-2" width="auto" height="75" alt="Mineum virtual mobile mining" />
+        <img src={navLogo} className="mr-2" width="auto" height="75" alt="Mineum virtual mobile mining" />
       </NavbarBrand>
       <NavbarToggler onClick={toggleNavbar} />
       <Collapse open={collapseOpen} navbar>
