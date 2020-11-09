@@ -15,7 +15,7 @@ import madeForSolanaLogo from './images/madeforsolana.png';
 import joinOnDiscordLogo from './images/joinondiscord.png';
 import forAndroidLogo from './images/forandroid.png';
 import gnomeIdleGif from './images/gnomeidle.gif';
-// import fogStyle from './css/fog.module.css';
+import fogStyle from './css/fog.module.css';
 import counterStyle from './css/counter.module.css';
 require('dotenv').config();
 
@@ -74,24 +74,25 @@ function updateRewards(googleId, sessionRewards) {
 };
 
 /* eslint-disable require-jsdoc */
-// function FogAnimation() {
-//   return (
-//     <>
-//       <div id="foglayer_01" className="fog">
-//         <div className="image01"></div>
-//         <div className="image02"></div>
-//       </div>
-//       <div id="foglayer_02" className="fog">
-//         <div className="image01"></div>
-//         <div className="image02"></div>
-//       </div>
-//       <div id="foglayer_03" className="fog">
-//         <div className="image01"></div>
-//         <div className="image02"></div>
-//       </div>
-//     </>
-//   );
-// };
+/* eslint-disable no-unused-vars */
+function FogAnimation() {
+  return (
+    <>
+      <div id={`${fogStyle['foglayer_01']}`} className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+      <div id={`${fogStyle['foglayer_02']}`} className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+      <div id={`${fogStyle['foglayer_03']}`} className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+    </>
+  );
+};
 
 /**
  * User Dashboard Page.
@@ -241,7 +242,8 @@ function App() {
               onFailure={handleGoogleFail}
               cookiePolicy={'single_host_origin'}
             />,
-            <Counter></Counter>
+            <Counter />
+            <About />
           </div>
         }
       </Route >
@@ -362,6 +364,27 @@ function Counter() {
         </p>
       </div >
     </center >
+  );
+}
+
+function About() {
+  return (
+    <div className="subscribe section bg-dark py-4">
+      <h3 className="section-title text-center text-white m-5">About</h3>
+      <p className="text-muted col-md-6 text-center mx-auto">The Mineum project started in October 2020 its goal is to bring the Solana blockchain to more users and to get the new users it will send out rewards to the most committed users.
+        <br></br>
+          The Mineum application is made available for multiple devices and systems, and to make it easy to join it requires only a Google account and a free Solana wallet.
+          The development of Mineum comes forward out of the Solana hackthon and the teaming up of Techtek, you can know him from Hive and Steem projects, and Aiell0, IT Cloud Architecture Consulting, and a Solana investor and Solana Discord user since X.
+        <br></br>
+          To be able to develop the Mineum project, we will use 25% of the Hackathon rewards to fill up 52 weeks of rewards, Solana enthusiasts can compete for them each week.
+          25% of the Hackathon rewards will be used for new developments and investments such as a own Solana validator node, the rewards made with the validator will be partially be used to fill Mineums weekly rewards pool and this will help to grow the project into its full potential and have its own funding from the Solana ecosystem.
+      </p>
+
+
+      <form className="form-inline d-table mb-5 mx-auto" action="/">
+        <div className="form-group"></div>
+      </form>
+    </div >
   );
 }
 
