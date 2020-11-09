@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
 import {React, useState, useEffect} from 'react';
 import './App.css';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
@@ -14,6 +15,8 @@ import madeForSolanaLogo from './images/madeforsolana.png';
 import joinOnDiscordLogo from './images/joinondiscord.png';
 import forAndroidLogo from './images/forandroid.png';
 import gnomeIdleGif from './images/gnomeidle.gif';
+// import fogStyle from './css/fog.module.css';
+import counterStyle from './css/counter.module.css';
 require('dotenv').config();
 
 /**
@@ -147,13 +150,13 @@ function Dashboard({onLogout, firstName, lastName, googleId}) {
         <br></br>
         <Card className="mb-4">
           <CardBody>
-            <img src={gnomeIdleGif} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
+            <img src={gnomeIdleGif} style={{opacity: 0.7, float: 'right'}} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
             <CardText>
-              <i className="fas fa-clock"></i>Mined time: <b>00:00:00</b> <br /> <font size="2">Counts up your minded time</font>
-              <Progress bar value='75'></Progress>
+              <i className="fas fa-clock"></i>Mined time: <b>00:00:00</b> <br /> <font size="2" style={{color: '#DDDDDD'}}>Counts up your minded time</font>
+              <Progress bar value='75' style={{width: '75%'}}></Progress>
             </CardText>
             <CardText>
-              <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br /> <font size="2"><b>#1</b> user343, <b>#2</b> @user345, <b>#3</b> user123</font>
+              <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br /> <font size="2" style={{color: '#DDDDDD'}}><b>#1</b> user343, <b>#2</b> @user345, <b>#3</b> user123</font>
             </CardText>
             <CardText>
               <i className="fas fa-users"></i>Active users: <b>219</b>
@@ -224,9 +227,9 @@ function App() {
                   <p className="text-muted">Mineum is a virtual mining initiative and community on the Solana Blockchain. Users get rewarded based on there committed time. To use Mineum you need to have a free <a href="https://solflare.com/"><b>Solana wallet</b></a> and a <a href="https://google.com/"><b>Google account.</b></a></p>
                   <p className="text-muted">Login now and start to earn your first <a href="https://solflare.com/"><b>SOL</b></a> coins, or <a href="https://solflare.com/"><b>download</b></a> the Mineum Android application.</p>
                   <div className="d-block mt-4">
-                    <a href="https://solana.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={madeForSolanaLogo} alt="" /></a>
-                    <a href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={joinOnDiscordLogo} alt="" /></a>
-                    <a href="https://laiello.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" src={forAndroidLogo} alt="" /></a>
+                    <a href="https://solana.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={madeForSolanaLogo} alt="" /></a>
+                    <a href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={joinOnDiscordLogo} alt="" /></a>
+                    <a href="https://laiello.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={forAndroidLogo} alt="" /></a>
                   </div>
                 </Col>
               </Row>
@@ -238,6 +241,7 @@ function App() {
               onFailure={handleGoogleFail}
               cookiePolicy={'single_host_origin'}
             />,
+            <Counter></Counter>
           </div>
         }
       </Route >
@@ -263,7 +267,7 @@ function NavBar() {
   return (
     <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
       <NavbarBrand className="mr-5">
-        <img src={navLogo} className="mr-2" width="auto" height="75" alt="Mineum virtual mobile mining" />
+        <img src={navLogo} className="mr-2" width="auto" style={{opacity: 0.5}} height="75" alt="Mineum virtual mobile mining" />
       </NavbarBrand>
       <NavbarToggler onClick={toggleNavbar} />
       <Collapse open={collapseOpen} navbar>
@@ -289,6 +293,75 @@ function NavBar() {
         </Nav >
       </Collapse>
     </Navbar >
+  );
+}
+
+function Counter() {
+  const [minutes, setMinutes] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [days, setDays] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let curday;
+      const nowDate = new Date();
+      const dy = 0; // Sunday through Saturday, 0 to 6
+      const countertime = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 20, 0, 0); // 20 out of 24 hours = 8pm
+
+      const curtime = nowDate.getTime(); // current time
+      const atime = countertime.getTime(); // countdown time
+      let seconds = parseInt((atime - curtime) / 1000);
+      if (seconds > 0) {
+        curday = dy - nowDate.getDay();
+      } else {
+        curday = dy - nowDate.getDay() - 1;
+      }
+
+      // after countdown time
+      if (curday < 0) {
+        curday += 7;
+      } // already after countdown time, switch to next week
+      if (seconds <= 0) {
+        seconds += (86400 * 7);
+      }
+
+      setDays(Math.floor(seconds / 86400));
+      seconds %= 86400;
+      setHours(Math.floor(seconds / 3600));
+      seconds %= 3600;
+      setMinutes(Math.floor(seconds / 60));
+      setSeconds(seconds %= 60);
+    }, 1000);
+
+    // cleanup
+    return () => clearInterval(interval);
+  });
+
+  return (
+    <center>
+      <div id={`${counterStyle['countholder']}`} >
+        <div>
+          <span className={counterStyle.days} id="days">{days}</span>
+          <div className="smalltext">Days</div>
+        </div>
+        <div>
+          <span className={counterStyle.hours} id="hours">{((hours < 10) ? '0' : '') + hours}</span>
+          <div className="smalltext">Hours</div>
+        </div>
+        <div>
+          <span className={counterStyle.minutes} id="minutes">{((minutes < 10) ? '0' : '') + minutes}</span>
+          <div className="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span className={counterStyle.seconds} id="seconds">{seconds}</span>
+          <div className="smalltext">Seconds</div>
+        </div>
+        <p>
+          <font size="3">Time until next <b>SOL</b> rewards are send out. (Sunday 12am (UTC) ) Current rewards in the pool: <b>62 SOL</b><span id="user" /></font>
+        </p>
+      </div >
+    </center >
   );
 }
 
