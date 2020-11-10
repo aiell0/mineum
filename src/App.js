@@ -210,17 +210,13 @@ function App() {
     history.push('/');
   };
 
-  const handleGoogleFail = () => {
-    console.error('Google failed to login.');
-  };
-
   return (
     <Switch>
       <Route exact path="/">
         {isLoggedIn ? <Redirect to="/dashboard" /> :
           <div className="App">
-            <NavBar />
-            <Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
+            <NavBar onLogin={handleLogin} />
+            < Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
               <Row>
                 <Col sm={'12'} md={'5'} lg={'5'} className={'mt-auto mb-auto mr-3'}>
                   <img src={bigLogo} width="100%" height="auto" alt="" />
@@ -235,13 +231,6 @@ function App() {
                 </Col>
               </Row>
             </Container>
-            <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              buttonText="Login"
-              onSuccess={handleLogin}
-              onFailure={handleGoogleFail}
-              cookiePolicy={'single_host_origin'}
-            />,
             <Counter />
             <About />
           </div>
@@ -259,12 +248,39 @@ function App() {
   );
 }
 
-function NavBar() {
+// property type checking
+NavBar.propTypes = {
+  onLogin: PropTypes.func,
+};
+
+const loginButtonStyle = {
+  position: 'absolute',
+  top: '50px',
+  right: '60px',
+  width: 100,
+  height: 50,
+  backgroundColor: 'rgb(66, 133, 244)',
+  alignItems: 'center',
+  color: '#fff',
+  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
+  padding: 2,
+  borderRadius: 2,
+  border: '1px solid transparent',
+  fontSize: 18,
+  fontWeight: '500',
+  fontFamily: 'Roboto, sans-serif',
+};
+
+function NavBar({onLogin}) {
   const [collapseOpen, setCollapseOpen] = useState(false);
 
   function toggleNavbar() {
     setCollapseOpen(!collapseOpen);
   }
+
+  const handleGoogleFail = () => {
+    console.error('Google failed to login.');
+  };
 
   return (
     <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
@@ -292,6 +308,18 @@ function NavBar() {
           <NavItem>
             <NavLink href="#information"><i className="fas fa-chart-area"></i>Information</NavLink>
           </NavItem>
+          <NavItem></NavItem>
+          <NavItem>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Login"
+              onSuccess={onLogin}
+              onFailure={handleGoogleFail}
+              render={(renderProps) => (
+                <button onClick={renderProps.onClick} style={loginButtonStyle}>Login</button>
+              )}
+            />,
+          </NavItem>
         </Nav >
       </Collapse>
     </Navbar >
@@ -301,7 +329,7 @@ function NavBar() {
 function Counter() {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-  const [days, setDays] = useState(0);
+  const [days, setDays] = useState(1);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
@@ -344,7 +372,7 @@ function Counter() {
     <center>
       <div id={`${counterStyle['countholder']}`} >
         <div>
-          <span className={counterStyle.days} id="days">{days}</span>
+          <span className={counterStyle.days} id="days">{days - 1}</span>
           <div className="smalltext">Days</div>
         </div>
         <div>
@@ -367,17 +395,18 @@ function Counter() {
   );
 }
 
+/* eslint-disable react/no-unescaped-entities */
 function About() {
   return (
     <div className="subscribe section bg-dark py-4">
       <h3 className="section-title text-center text-white m-5">About</h3>
       <p className="text-muted col-md-6 text-center mx-auto">The Mineum project started in October 2020 its goal is to bring the Solana blockchain to more users and to get the new users it will send out rewards to the most committed users.
         <br></br>
-          The Mineum application is made available for multiple devices and systems, and to make it easy to join it requires only a Google account and a free Solana wallet.
-          The development of Mineum comes forward out of the Solana hackthon and the teaming up of Techtek, you can know him from Hive and Steem projects, and Aiell0, IT Cloud Architecture Consulting, and a Solana investor and Solana Discord user since X.
+          The Mineum application is available for multiple devices and systems, and only requires a Google account and Solana wallet.
+          Mineum was developed during the Solana hackthon by <a href="https://github.com/techtek">techtek</a>, a web designer who worked on similar projects on Hive and Steem, and <a href="https://github.com/aiell0">aiell0</a>, an IT Cloud Architecture Consultant and early Solana investor.
         <br></br>
-          To be able to develop the Mineum project, we will use 25% of the Hackathon rewards to fill up 52 weeks of rewards, Solana enthusiasts can compete for them each week.
-          25% of the Hackathon rewards will be used for new developments and investments such as a own Solana validator node, the rewards made with the validator will be partially be used to fill Mineums weekly rewards pool and this will help to grow the project into its full potential and have its own funding from the Solana ecosystem.
+          To develop the Mineum project, 25% of the Hackathon rewards will be used to fill up 52 weeks of rewards. Solana enthusiasts can compete for them each week by using the app.
+          25% of the Hackathon rewards will be used for new development and investments such as a dedicated Solana validator node. The rewards generated from this validator will be partially be used to fill Mineum's weekly rewards pool. This will help to grow the project into its full potential and have its own funding from the Solana ecosystem.
       </p>
 
 
