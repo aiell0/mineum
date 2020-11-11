@@ -28,6 +28,7 @@ import {
   FormGroup,
   Button,
   CardImg,
+  ButtonGroup,
 } from 'shards-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
@@ -169,34 +170,37 @@ function Dashboard({onLogout, firstName, lastName, googleId}) {
 
   return (
     <>
-      <h1>Name: {firstName} {lastName}</h1>
-      <h1>Rewards This Epoch: {rewardsThisEpoch} SOL</h1>
-      <h1>Rewards This Session: {reward} SOL</h1>
-      <Col sm={'12'} md={'5'} lg={'4'} className={'mt-auto'}>
-        <br></br>
-        <Card className="mb-4">
-          <CardBody>
-            <img src={gnomeIdleGif} style={{opacity: 0.7, float: 'right'}} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
-            <CardText>
-              <i className="fas fa-clock"></i>Mined time: <b>00:00:00</b> <br /> <font size="2" style={{color: '#DDDDDD'}}>Counts up your minded time</font>
-              <Progress bar value='75' style={{width: '75%'}}></Progress>
-            </CardText>
-            <CardText>
-              <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br /> <font size="2" style={{color: '#DDDDDD'}}><b>#1</b> user343, <b>#2</b> @user345, <b>#3</b> user123</font>
-            </CardText>
-            <CardText>
-              <i className="fas fa-users"></i>Active users: <b>219</b>
-            </CardText>
-          </CardBody>
-        </Card>
-      </Col>
-      <div className="container">
-        <GoogleLogout
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Logout"
-          onLogoutSuccess={handleOnIdle}
-        />,
-      </div>
+      <DashboardNavBar onLogout={handleOnIdle} />
+      <Container>
+        <div className="py-4">
+          <Row>
+            <Col sm={'12'} md={'4'} lg={'6'} className={'mt-auto'}>
+              <Card className="mb-4">
+                <CardTitle>{firstName} {lastName}</CardTitle>
+                <CardBody>
+                  <img src={gnomeIdleGif} style={{opacity: 0.7, float: 'right'}} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
+                  <CardText>
+                    <i className="fas fa-clock"></i>Mined time: <b>00:00:00</b> <br /> <font size="2" style={{color: '#DDDDDD'}}>Counts up your minded time</font>
+                    <Progress bar value='75' style={{width: '75%'}}></Progress>
+                  </CardText>
+                  <CardText>
+                    <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br /> <font size="2" style={{color: '#DDDDDD'}}><b>#1</b> user343, <b>#2</b> @user345, <b>#3</b> user123</font>
+                  </CardText>
+                  <CardText>
+                    <i className="fas fa-users"></i>Active users: <b>219</b>
+                  </CardText>
+                  <ButtonGroup>
+                    <Button outline theme="success">START MINING</Button>
+                    <Button outline theme="danger">STOP MINING</Button>
+                  </ButtonGroup>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      </Container>
+      <Rewards epochRewards={rewardsThisEpoch} />
+      <Settings />
     </>
   );
 };
@@ -240,7 +244,7 @@ function App() {
       <Route exact path="/">
         {isLoggedIn ? <Redirect to="/dashboard" /> :
           <div className="App">
-            <NavBar onLogin={handleLogin} />
+            <HomepageNavBar onLogin={handleLogin} />
             < Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
               <Row>
                 <Col sm={'12'} md={'5'} lg={'5'} className={'mt-auto mb-auto mr-3'}>
@@ -260,9 +264,7 @@ function App() {
             <About />
             <Statistics />
             <Rankings />
-            <Rewards />
             <SocialMedia />
-            <Settings />
             <Footer />
           </div>
         }
@@ -280,8 +282,13 @@ function App() {
 }
 
 // property type checking
-NavBar.propTypes = {
+HomepageNavBar.propTypes = {
   onLogin: PropTypes.func,
+};
+
+// property type checking
+DashboardNavBar.propTypes = {
+  onLogout: PropTypes.func,
 };
 
 const loginButtonStyle = {
@@ -302,7 +309,7 @@ const loginButtonStyle = {
   fontFamily: 'Roboto, sans-serif',
 };
 
-function NavBar({onLogin}) {
+function HomepageNavBar({onLogin}) {
   const [collapseOpen, setCollapseOpen] = useState(false);
 
   function toggleNavbar() {
@@ -325,19 +332,13 @@ function NavBar({onLogin}) {
             <NavLink active href="#">Miner</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#statistics"><i className="fas fa-chart-area"></i>Statistics</NavLink>
+            <NavLink href="#statistics"><i className="fas fa-chart-area"></i> Statistics</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#rankings"><i className="fas fa-chart-area"></i>Rankings</NavLink>
+            <NavLink href="#rankings"><i className="fas fa-trophy"></i> Rankings</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#rewards"><i className="fas fa-chart-area"></i>Rewards</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#settings"><i className="fas fa-chart-area"></i>Settings</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#information"><i className="fas fa-chart-area"></i>Information</NavLink>
+            <NavLink href="#about"><i className="fas fa-info"></i> About</NavLink>
           </NavItem>
           <NavItem></NavItem>
           <NavItem>
@@ -345,6 +346,51 @@ function NavBar({onLogin}) {
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Login"
               onSuccess={onLogin}
+              onFailure={handleGoogleFail}
+              render={(renderProps) => (
+                <button onClick={renderProps.onClick} style={loginButtonStyle}>Login</button>
+              )}
+            />,
+          </NavItem>
+        </Nav >
+      </Collapse>
+    </Navbar >
+  );
+}
+
+function DashboardNavBar({onLogout}) {
+  const [collapseOpen, setCollapseOpen] = useState(false);
+
+  function toggleNavbar() {
+    setCollapseOpen(!collapseOpen);
+  }
+
+  const handleGoogleFail = () => {
+    console.error('Google failed to logout.');
+  };
+
+  return (
+    <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
+      <NavbarBrand className="mr-5">
+        <img src={navLogo} className="mr-2" width="auto" style={{opacity: 0.5}} height="75" alt="Mineum virtual mobile mining" />
+      </NavbarBrand>
+      <NavbarToggler onClick={toggleNavbar} />
+      <Collapse open={collapseOpen} navbar>
+        <Nav navbar>
+          <NavItem>
+            <NavLink active href="#">Miner</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#rewards"><i className="fas fa-medal"></i> Rewards</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#settings"><i className="fas fa-cogs"></i> Settings</NavLink>
+          </NavItem>
+          <NavItem>
+            <GoogleLogout
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Logout"
+              onLogoutSuccess={onLogout}
               onFailure={handleGoogleFail}
               render={(renderProps) => (
                 <button onClick={renderProps.onClick} style={loginButtonStyle}>Login</button>
@@ -721,7 +767,12 @@ function Rankings() {
   );
 }
 
-function Rewards() {
+// property type checking
+Rewards.propTypes = {
+  epochRewards: PropTypes.string,
+};
+
+function Rewards({epochRewards}) {
   return (
     <div className="blog section section-invert py-4">
       <h3 className="section-title text-center m-5"><i className="fas fa-trophy" style={{color: '#DDDDDD'}} > </i> Rewards</h3>
@@ -733,7 +784,7 @@ function Rewards() {
                 <Card className="mb-4">
                   <CardBody>
                     <CardTitle>SOL</CardTitle>
-                    <CardText>You received: <b>4.841 SOL</b></CardText>
+                    <CardText>You received: <b>{epochRewards} SOL</b></CardText>
                     <CardText>Improve the weekly SOL rewards pool by voting for our <a href="">Solana validator server</a></CardText>
                     <table>
                       <tr>
