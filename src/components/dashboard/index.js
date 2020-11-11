@@ -52,14 +52,16 @@ function createUser(firstName, lastName, googleId) {
  * Create User in Database.
  * @param {string} googleId - User's google ID.
  * @param {string} sessionRewards - User session rewards.
+ * @param {number} secondsMined - Number of seconds user mined during this session.
  */
-function updateRewards(googleId, sessionRewards) {
+function updateUser(googleId, sessionRewards, secondsMined) {
+  console.log(`Updating user ${googleId}`);
   fetch(`http://localhost:3001/users`, {
     method: 'put',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
     },
-    body: `googleId=${googleId}&rewardsThisSession=${sessionRewards}`,
+    body: `googleId=${googleId}&rewardsThisSession=${sessionRewards}&secondsMined=${secondsMined}`,
   }).then((response) => {
     if (response.ok) {
       return response.json();
@@ -68,6 +70,7 @@ function updateRewards(googleId, sessionRewards) {
     }
   }).then((jsonResponse) => {
     console.log(`${rewards} SOL rewards for user ${googleId} added.`);
+    console.log(`${secondsMined} seconds mined for user ${googleId} added.`);
     console.log(jsonResponse);
   }).catch((error) => {
     console.error(error);
@@ -93,16 +96,19 @@ Dashboard.propTypes = {
 export default function Dashboard({onLogout, firstName, lastName, googleId}) {
   const timeout = 5000;
   const baseRewardRate = .0000001;
+  const secondsInWeek = 604800;
   const [reward, setReward] = useState(0);
   const [rewardsThisEpoch, setRewardsThisEpoch] = useState(0);
   const [timer, setTimer] = useState(0);
   const [formattedTime, setFormattedTime] = useState('00:00:00');
   const [isMining, setIsMining] = useState(false);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   const handleOnIdle = (event) => {
     console.log('user has gone idle');
     setIsMining(false);
-    updateRewards(googleId, reward);
+    updateUser(googleId, reward, timer);
     onLogout();
   };
 
@@ -141,9 +147,26 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
       }
     }).then((jsonResponse) => {
       setRewardsThisEpoch(parseFloat(jsonResponse['rewardsThisEpoch']));
+      setProgressPercent(Math.ceil(jsonResponse['secondsMined'] / secondsInWeek));
+      console.log(progressPercent);
     }).catch((error) => {
       console.error(error);
       createUser(firstName, lastName, googleId);
+    });
+
+    // getting total users
+    fetch(`http://localhost:3001/users`).then((response) => {
+      if (response.ok) {
+        console.log(`Got users.`);
+        return response.json();
+      } else {
+        throw new Error(`Attempting to get users failed.`);
+      }
+    }).then((jsonResponse) => {
+      setTotalUsers(parseInt(jsonResponse['doc_count']));
+    }).catch((error) => {
+      console.error(error);
+      setTotalUsers('N/A');
     });
 
     const interval = setInterval(() => {
@@ -169,14 +192,14 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
                 <CardBody>
                   <img src={gnomeIdleGif} style={{opacity: 0.7, float: 'right'}} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
                   <CardText>
-                    <i className="fas fa-clock"></i>Mined time: {formattedTime} <br />
-                    <Progress bar value='0' style={{width: '75%'}}></Progress>
+                    <i className="fas fa-clock"></i> Mined time: {formattedTime} <br />
+                    <Progress bar value={progressPercent} style={{width: '75%'}}></Progress>
                   </CardText>
                   <CardText>
-                    <i className="fas fa-trophy"></i>Your current rank: <b>#24</b> <br />
+                    <i className="fas fa-trophy"></i> Your current rank: <b>TBD</b> <br />
                   </CardText>
                   <CardText>
-                    <i className="fas fa-users"></i>Active users: <b>219</b>
+                    <i className="fas fa-users"></i> Active users: <b>{totalUsers}</b>
                   </CardText>
                   <ButtonGroup> {
                     isMining ? (
