@@ -60,11 +60,10 @@ export default function DashboardNavBar({onLogout}) {
         <NavItem>
           <GoogleLogout
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Logout"
             onLogoutSuccess={onLogout}
             onFailure={handleGoogleFail}
             render={(renderProps) => (
-              <button onClick={renderProps.onClick} style={logoutButtonStyle}>Login</button>
+              <button onClick={renderProps.onClick} style={logoutButtonStyle}>Logout</button>
             )}
           />,
         </NavItem>
