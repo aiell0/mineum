@@ -28,7 +28,7 @@ import Settings from '../settings';
  */
 function createUser(firstName, lastName, googleId) {
   console.log(`Adding new user "${googleId}" to database.`);
-  fetch(`http://localhost:3001/users`, {
+  fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users`, {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -56,7 +56,7 @@ function createUser(firstName, lastName, googleId) {
  */
 function updateUser(googleId, sessionRewards, secondsMined) {
   console.log(`Updating user ${googleId}`);
-  fetch(`http://localhost:3001/users`, {
+  fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users`, {
     method: 'put',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -138,7 +138,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
 
   useEffect(() => {
     // getting the user from database only once
-    fetch(`http://localhost:3001/users/${googleId}`).then((response) => {
+    fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users/${googleId}`).then((response) => {
       if (response.ok) {
         console.log(`User "${googleId} was found.`);
         return response.json();
@@ -155,7 +155,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
     });
 
     // getting total users
-    fetch(`http://localhost:3001/users`).then((response) => {
+    fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users`).then((response) => {
       if (response.ok) {
         console.log(`Got users.`);
         return response.json();
