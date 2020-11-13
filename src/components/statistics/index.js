@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable max-len */
+import {React, useEffect, useState} from 'react';
 import {
   Container,
   Row,
@@ -15,6 +16,29 @@ import {
  * @return {React} Statistics section.
  */
 export default function Statistics() {
+  const [solanaPrice, setSolanaPrice] = useState('Retrieving...');
+
+  useEffect(() => {
+    fetch(`https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd`, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+      },
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Could not get Solana price from Coingecko. Possible API failure?`);
+      }
+    }).then((jsonResponse) => {
+      console.log(`Got Solana price from Coingecko.`);
+      setSolanaPrice(jsonResponse['solana']['usd']);
+    }).catch((error) => {
+      console.error(error);
+      setSolanaPrice(toString('N/A'));
+    });
+  }, []);
+
   return (
     <div className="blog section section-invert py-4">
       <h3 className="section-title text-center m-5">
@@ -32,7 +56,7 @@ export default function Statistics() {
                     <CardTitle>248</CardTitle>
                     <CardText>
                       <i className="fas fa-users"></i>
-                     Total users this week
+                      Total users this week
                     </CardText>
                   </CardBody>
                 </Card>
@@ -43,7 +67,7 @@ export default function Statistics() {
                     <CardTitle>248</CardTitle>
                     <CardText>
                       <i className="fas fa-users"></i>
-                      Users active now
+                       Users active now
                     </CardText>
                   </CardBody>
                 </Card>
@@ -54,7 +78,7 @@ export default function Statistics() {
                     <CardTitle>.248 </CardTitle>
                     <CardText>
                       <i className="fas fa-money-bill-wave"></i>
-                      Average payout (SOL)
+                       Average payout (SOL)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -65,7 +89,7 @@ export default function Statistics() {
                     <CardTitle>26.87 </CardTitle>
                     <CardText>
                       <i className="fas fa-money-bill-wave"></i>
-                      Currently in the pool (SOL)
+                       Currently in the pool (SOL)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -76,7 +100,7 @@ export default function Statistics() {
                     <CardTitle>6:05:46:21</CardTitle>
                     <CardText>
                       <i className="fas fa-clock"></i>
-                      Time until next payout (d:h:m:s)
+                       Time until next payout (d:h:m:s)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -84,10 +108,10 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>2.00</CardTitle>
+                    <CardTitle>{solanaPrice}</CardTitle>
                     <CardText>
                       <i className="fas fa-money-bill-wave"></i>
-                      SOL Price (USD)
+                       SOL Price (USD)
                     </CardText>
                   </CardBody>
                 </Card>
