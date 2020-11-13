@@ -225,8 +225,8 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
           </Row>
         </div>
       </Container>
-      <Rewards epochRewards={rewardsThisEpoch} />
-      <Settings />
+      <a name="rewards"><Rewards epochRewards={rewardsThisEpoch} /></a>
+      <a name="settings"><Settings /></a>
     </>
   );
 };

@@ -77,6 +77,7 @@ function App() {
             < Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
               <Row>
                 <Col sm={'12'} md={'5'} lg={'5'} className={'mt-auto mb-auto mr-3'}>
+                  <br></br>
                   <img src={bigLogo} width="100%" height="auto" alt="" />
                   <br></br>
                   <p className="text-muted">Mineum is a virtual mining initiative and community on the Solana Blockchain. Users get rewarded based on there committed time. To use Mineum you need to have a free <a href="https://solflare.com/"><b>Solana wallet</b></a> and a <a href="https://google.com/"><b>Google account.</b></a></p>
@@ -92,10 +93,10 @@ function App() {
             <br></br>
             <br></br>
             <Counter />
-            <About />
-            <Statistics />
-            <Rankings />
-            <SocialMedia />
+            <a name="about"><About /></a>
+            <a name="statistics"><Statistics /></a>
+            <a name="rankings"><Rankings /></a>
+            <a name="contact"><SocialMedia /></a>
             <Footer />
           </div>
         }
