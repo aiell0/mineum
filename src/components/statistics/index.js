@@ -65,8 +65,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>248</CardTitle>
                     <CardText>
-                      <i className="fas fa-users"></i>
-                      Total users this week
+                      <i className="fas fa-users"></i> &nbsp; Total users this week
                     </CardText>
                   </CardBody>
                 </Card>
@@ -76,8 +75,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>248</CardTitle>
                     <CardText>
-                      <i className="fas fa-users"></i>
-                       Users active now
+                      <i className="fas fa-users"></i>&nbsp; Users active now
                     </CardText>
                   </CardBody>
                 </Card>
@@ -87,8 +85,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>.248 </CardTitle>
                     <CardText>
-                      <i className="fas fa-money-bill-wave"></i>
-                       Average payout (SOL)
+                      <i className="fas fa-money-bill-wave"></i>&nbsp; Average payout (SOL)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -98,8 +95,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>{poolBalance}</CardTitle>
                     <CardText>
-                      <i className="fas fa-money-bill-wave"></i>
-                       Currently in the pool (SOL)
+                      <i className="fas fa-money-bill-wave"></i>&nbsp; Currently in the pool (SOL)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -109,8 +105,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>6:05:46:21</CardTitle>
                     <CardText>
-                      <i className="fas fa-clock"></i>
-                       Time until next payout (d:h:m:s)
+                      <i className="fas fa-clock"></i> &nbsp; Time until next payout (d:h:m:s)
                     </CardText>
                   </CardBody>
                 </Card>
@@ -120,8 +115,7 @@ export default function Statistics() {
                   <CardBody>
                     <CardTitle>{solanaPrice}</CardTitle>
                     <CardText>
-                      <i className="fas fa-money-bill-wave"></i>
-                       SOL Price (USD)
+                      <i className="fas fa-money-bill-wave"></i> &nbsp; SOL Price (USD)
                     </CardText>
                   </CardBody>
                 </Card>

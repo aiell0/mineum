@@ -23,7 +23,7 @@ const loginButtonStyle = {
   height: 50,
   backgroundColor: 'rgb(66, 133, 244)',
   alignItems: 'center',
-  color: '#fff',
+  color: '#25c4f4',
   boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
   padding: 2,
   borderRadius: 2,
@@ -49,16 +49,19 @@ export default function HomepageNavBar({onLogin}) {
       </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink active href="#">Miner</NavLink>
+          <NavLink active href="#" style={{color: '#c1c2c3'}}> Miner</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#statistics"><i className="fas fa-chart-area"></i> Statistics</NavLink>
+          <NavLink href="#statistics" style={{color: '#c1c2c3'}}><i className="fas fa-chart-area"></i>&nbsp; Statistics</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#rankings"><i className="fas fa-trophy"></i> Rankings</NavLink>
+          <NavLink href="#rankings" style={{color: '#c1c2c3'}}><i className="fas fa-trophy"></i>&nbsp; Rankings</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#about"><i className="fas fa-info"></i> About</NavLink>
+          <NavLink href="#about" style={{color: '#c1c2c3'}}><i className="fas fa-info"></i>&nbsp; About</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#contact" style={{color: '#c1c2c3'}}><i className="fas fa-info"></i>&nbsp; Contact Us</NavLink>
         </NavItem>
         <NavItem></NavItem>
         <NavItem>

@@ -29,7 +29,7 @@ export default function SocialMedia() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardImg src={discordLogo}></CardImg>
+                    <CardImg width="100%" height="100%" src={discordLogo}></CardImg>
                     <CardTitle>Chat on Discord</CardTitle>
                     <CardText>Join the Mineum Discord chat, and get in contact with other users.</CardText>
                     <a className="btn btn-outline-success btn-normal" href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer">Discord</a>
@@ -39,7 +39,7 @@ export default function SocialMedia() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardImg src={twitterLogo}></CardImg>
+                    <CardImg width="100%" height="100%" src={twitterLogo}></CardImg>
                     <CardTitle>Follow on Twitter</CardTitle>
                     <CardText>Read our latest tweets, and follow the Mineum project on Twitter.</CardText>
                     <a className="btn btn-outline-success btn-normal" target="_blank" rel="noreferrer">Twitter</a>

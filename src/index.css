@@ -7,6 +7,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background-image: url('https://techtek.github.io/mineum/images/app-promo/welcome-cover.jpg');
 	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
 code {
