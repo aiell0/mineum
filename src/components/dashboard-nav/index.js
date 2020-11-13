@@ -43,7 +43,7 @@ export default function DashboardNavBar({onLogout}) {
   };
 
   return (
-    <Navbar type="dark" theme="primary" expand={'lg'} className="pt-4 px-0">
+    <Navbar expand={'lg'} className="pt-4 px-0">
       <NavbarBrand className="mr-5">
         <img src={navLogo} className="mr-2" width="auto" style={{opacity: 0.5}} height="75" alt="Mineum virtual mobile mining" />
       </NavbarBrand>

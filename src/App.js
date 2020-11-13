@@ -89,6 +89,8 @@ function App() {
                 </Col>
               </Row>
             </Container>
+            <br></br>
+            <br></br>
             <Counter />
             <About />
             <Statistics />

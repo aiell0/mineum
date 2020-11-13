@@ -4,7 +4,9 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
+	background-image: url('https://techtek.github.io/mineum/images/app-promo/welcome-cover.jpg');
+	background-repeat: no-repeat;
 }
 
 code {

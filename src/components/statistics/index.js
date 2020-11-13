@@ -39,7 +39,7 @@ export default function Statistics() {
       setSolanaPrice('N/A');
     });
 
-    const connection = new solanaWeb3.Connection('http://devnet.solana.com');
+    const connection = new solanaWeb3.Connection('https://devnet.solana.com');
     const publicKey = new solanaWeb3.PublicKey(`${process.env.REACT_APP_MINEUM_ADDRESS}`);
     connection.getBalance(publicKey).then((balance) => {
       setPoolBalance(balance);
