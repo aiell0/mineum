@@ -21,9 +21,9 @@ const logoutButtonStyle = {
   right: '60px',
   width: 100,
   height: 50,
-  backgroundColor: 'rgb(66, 133, 244)',
+  backgroundColor: '#25c4f4',
   alignItems: 'center',
-  color: '#25c4f4',
+  color: '#fff',
   boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
   padding: 2,
   borderRadius: 2,
@@ -49,13 +49,13 @@ export default function DashboardNavBar({onLogout}) {
       </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink active href="#" style={{color: '#c1c2c3'}}>Miner</NavLink>
+          <NavLink active href="#">Miner</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#rewards" style={{color: '#c1c2c3'}}><i className="fas fa-medal"></i>&nbsp; Rewards</NavLink>
+          <NavLink href="#rewards"><i className="fas fa-medal"></i> Rewards</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#settings" style={{color: '#c1c2c3'}}><i className="fas fa-cogs"></i>&nbsp; Settings</NavLink>
+          <NavLink href="#settings"><i className="fas fa-cogs"></i> Settings</NavLink>
         </NavItem>
         <NavItem>
           <GoogleLogout
