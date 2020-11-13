@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import {React, useEffect, useState} from 'react';
+import * as solanaWeb3 from '@solana/web3.js';
 import {
   Container,
   Row,
@@ -16,7 +17,8 @@ import {
  * @return {React} Statistics section.
  */
 export default function Statistics() {
-  const [solanaPrice, setSolanaPrice] = useState('Retrieving...');
+  const [solanaPrice, setSolanaPrice] = useState('retrieving...');
+  const [poolBalance, setPoolBalance] = useState('retrieving...');
 
   useEffect(() => {
     fetch(`https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd`, {
@@ -31,11 +33,19 @@ export default function Statistics() {
         throw new Error(`Could not get Solana price from Coingecko. Possible API failure?`);
       }
     }).then((jsonResponse) => {
-      console.log(`Got Solana price from Coingecko.`);
       setSolanaPrice(jsonResponse['solana']['usd']);
     }).catch((error) => {
       console.error(error);
-      setSolanaPrice(toString('N/A'));
+      setSolanaPrice('N/A');
+    });
+
+    const connection = new solanaWeb3.Connection('http://devnet.solana.com');
+    const publicKey = new solanaWeb3.PublicKey(`${process.env.REACT_APP_MINEUM_ADDRESS}`);
+    connection.getBalance(publicKey).then((balance) => {
+      setPoolBalance(balance);
+    }).catch((error) => {
+      console.error(error);
+      setPoolBalance('N/A');
     });
   }, []);
 
@@ -86,7 +96,7 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>26.87 </CardTitle>
+                    <CardTitle>{poolBalance}</CardTitle>
                     <CardText>
                       <i className="fas fa-money-bill-wave"></i>
                        Currently in the pool (SOL)
