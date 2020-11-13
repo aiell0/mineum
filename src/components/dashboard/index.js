@@ -172,8 +172,8 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
     const interval = setInterval(() => {
       if (isMining) {
         setTimer(timer + 1);
+        setReward(baseRewardRate * getElapsedTime());
       }
-      setReward(baseRewardRate * getElapsedTime());
       setFormattedTime(formatTime());
     }, 1000);
     // cleanup

@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 
 // property type checking
 Rewards.propTypes = {
-  epochRewards: PropTypes.string,
+  epochRewards: PropTypes.number,
 };
 
 /**
