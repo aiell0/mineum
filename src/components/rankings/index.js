@@ -34,14 +34,12 @@ export default function Rankings() {
                       <tr>
                         <th>Rank</th>
                         <th>Username</th>
-                        <th>Upvoted</th>
-                        <th>Time </th>
+                        <th>Time</th>
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>Username123</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td></td>
@@ -51,45 +49,38 @@ export default function Rankings() {
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>username456</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>username689</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>username289</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td>username719</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>6</td>
-                        <td>username349</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>7</td>
-                        <td>username749</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>8</td>
-                        <td>username473</td>
-                        <td>Yes</td>
-                        <td>18:00</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                     </table>
                   </CardBody>
@@ -116,43 +107,43 @@ export default function Rankings() {
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>Username456</td>
-                        <td>294.129</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>Username456</td>
-                        <td>34.121</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>Username456</td>
-                        <td>25.247</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>Username456</td>
-                        <td>20.254</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td>Username456</td>
-                        <td>16.124</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>6</td>
-                        <td>Username456</td>
-                        <td>14.981</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>7</td>
-                        <td>Username456</td>
-                        <td>11.470</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>8</td>
-                        <td>Username456</td>
-                        <td>10.210</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                     </table>
                   </CardBody>
@@ -169,12 +160,10 @@ export default function Rankings() {
                       <tr>
                         <th>Rank</th>
                         <th>Username </th>
-                        <th>Posts</th>
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>Username456</td>
-                        <td>862</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td></td>
@@ -184,38 +173,31 @@ export default function Rankings() {
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>Username456</td>
-                        <td>34</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>Username456</td>
-                        <td>25</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>Username456</td>
-                        <td>24</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td>Username456</td>
-                        <td>16</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>6</td>
-                        <td>Username456</td>
-                        <td>14</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>7</td>
-                        <td>Username456</td>
-                        <td>11</td>
+                        <td>-</td>
                       </tr>
                       <tr>
                         <td>8</td>
-                        <td>Username456</td>
-                        <td>10</td>
+                        <td>-</td>
                       </tr>
                     </table>
                   </CardBody>

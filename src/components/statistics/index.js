@@ -63,7 +63,7 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>248</CardTitle>
+                    <CardTitle>-</CardTitle>
                     <CardText>
                       <i className="fas fa-users"></i> &nbsp; Total users this week
                     </CardText>
@@ -73,7 +73,7 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>248</CardTitle>
+                    <CardTitle>-</CardTitle>
                     <CardText>
                       <i className="fas fa-users"></i>&nbsp; Users active now
                     </CardText>
@@ -83,7 +83,7 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>.248 </CardTitle>
+                    <CardTitle>-</CardTitle>
                     <CardText>
                       <i className="fas fa-money-bill-wave"></i>&nbsp; Average payout (SOL)
                     </CardText>
@@ -103,7 +103,7 @@ export default function Statistics() {
               <Col md={'12'} lg={'4'}>
                 <Card className="mb-4">
                   <CardBody>
-                    <CardTitle>6:05:46:21</CardTitle>
+                    <CardTitle>-:-:-:-</CardTitle>
                     <CardText>
                       <i className="fas fa-clock"></i> &nbsp; Time until next payout (d:h:m:s)
                     </CardText>

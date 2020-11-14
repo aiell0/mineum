@@ -125,7 +125,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
   const [timer, setTimer] = useState(0);
   const [formattedTime, setFormattedTime] = useState('00:00:00');
   const [isMining, setIsMining] = useState(false);
-  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalUsers, setTotalUsers] = useState('-');
   const [progressPercent, setProgressPercent] = useState(0);
 
   const handleOnIdle = (event) => {
@@ -215,8 +215,8 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
           <Row>
             <Col sm={'12'} md={'4'} lg={'6'} className={'mt-auto'}>
               <Card className="mb-4">
-                <CardTitle><i className="fas fa-gavel"></i> {firstName} {lastName}</CardTitle>
                 <CardBody>
+                  <CardTitle><i className="fas fa-gavel"></i> {firstName} {lastName}</CardTitle>
                   <img src={gnomeIdleGif} style={{opacity: 0.7, float: 'right'}} width="auto" height="75" className="mr-2" alt="Mineum virtual mobile mining" />
                   <CardText>
                     <i className="fas fa-clock"></i> Mined time: {formattedTime} <br />
