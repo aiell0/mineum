@@ -42,10 +42,10 @@ export default function Statistics() {
     const connection = new solanaWeb3.Connection('https://devnet.solana.com');
     const publicKey = new solanaWeb3.PublicKey(`${process.env.REACT_APP_MINEUM_ADDRESS}`);
     connection.getBalance(publicKey).then((balance) => {
-      setPoolBalance(balance);
+      setPoolBalance(balance / 1000000000); // balance comes in orders of magnitude higher for some reason
     }).catch((error) => {
       console.error(error);
-      setPoolBalance('N/A');
+      setPoolBalance('-');
     });
   }, []);
 
