@@ -33,6 +33,12 @@ const loginButtonStyle = {
   fontFamily: 'Roboto, sans-serif',
 };
 
+const logoStyle = {
+  position: 'relative',
+  left: '40px',
+  opacity: 0.5,
+};
+
 /**
  * Homepage navigation bar.
  * @return {React} Navigation section.
@@ -45,7 +51,7 @@ export default function HomepageNavBar({onLogin}) {
   return (
     <Navbar expand="lg" className="pt-4 px-0">
       <NavbarBrand className="mr-5">
-        <img src={navLogo} className="mr-2" width="auto" style={{opacity: 0.5}} height="75" alt="Mineum virtual mobile mining" />
+        <img src={navLogo} className="mr-2" width="auto" style={logoStyle} height="75" alt="Mineum virtual mobile mining" />
       </NavbarBrand>
       <Nav navbar>
         <NavItem>

@@ -94,7 +94,7 @@ Dashboard.propTypes = {
  * @return {React} Google Logout Button.
  */
 export default function Dashboard({onLogout, firstName, lastName, googleId}) {
-  const timeout = 5000;
+  const timeout = 60000;
   const baseRewardRate = .0000001;
   const secondsInWeek = 604800;
   const [reward, setReward] = useState(0);

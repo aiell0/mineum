@@ -80,8 +80,8 @@ function App() {
                   <br></br>
                   <img src={bigLogo} width="100%" height="auto" alt="" />
                   <br></br>
-                  <p className="text-muted">Mineum is a virtual mining initiative and community on the Solana Blockchain. Users get rewarded based on there committed time. To use Mineum you need to have a free <a href="https://solflare.com/"><b>Solana wallet</b></a> and a <a href="https://google.com/"><b>Google account.</b></a></p>
-                  <p className="text-muted">Login now and start to earn your first <a href="https://solflare.com/"><b>SOL</b></a> coins, or <a href="https://solflare.com/"><b>download</b></a> the Mineum Android application.</p>
+                  <p className="text-muted">Mineum is a virtual mining initiative and community on the Solana Blockchain. Users get rewarded based on there committed time. To use Mineum you need to have a free <a style={{color: '#c1c2c3'}} href="https://solflare.com/"><b>Solana wallet</b></a> and a <a style={{color: '#c1c2c3'}} href="https://google.com/"><b>Google account.</b></a></p>
+                  <p className="text-muted">Login now and start to earn your first <a style={{color: '#c1c2c3'}} href="https://www.coingecko.com/en/coins/solana"><b>SOL</b></a> coins, or download the Mineum Android application.</p>
                   <div className="d-block mt-4">
                     <a href="https://solana.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={madeForSolanaLogo} alt="" /></a>
                     <a href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={joinOnDiscordLogo} alt="" /></a>
