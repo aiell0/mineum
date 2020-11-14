@@ -45,8 +45,8 @@ export default function Rewards({epochRewards}) {
                         <th>Amount</th>
                       </tr>
                       <tr>
-                        <td>Week 8</td>
-                        <td>0.253</td>
+                        <td>8</td>
+                        <td>0</td>
                       </tr>
                       <tr>
                         <td></td>
@@ -55,32 +55,32 @@ export default function Rewards({epochRewards}) {
                         <td></td>
                       </tr>
                       <tr>
-                        <td>Week 7</td>
-                        <td>0.385</td>
+                        <td>7</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 6</td>
-                        <td>0.307</td>
+                        <td>6</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 5</td>
-                        <td>0.201</td>
+                        <td>5</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 4</td>
-                        <td>0.178</td>
+                        <td>4</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 3</td>
-                        <td>0.249</td>
+                        <td>3</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 2</td>
-                        <td>0.189</td>
+                        <td>2</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 1</td>
-                        <td>0.224</td>
+                        <td>1</td>
+                        <td>0</td>
                       </tr>
                     </table>
                   </CardBody>
@@ -90,50 +90,50 @@ export default function Rewards({epochRewards}) {
                 <Card className="mb-4">
                   <CardBody>
                     <CardTitle>Other Coins</CardTitle>
-                    <CardText>You received: <b>37 OTHER</b></CardText>
-                    <CardText>Get tokens, every week <b>6000</b> Other in the pool, to be shared. Keep or use them in <a href="">Other</a></CardText>
+                    <CardText>You received: <b>0 OTHER</b></CardText>
+                    <CardText>Get tokens, every week <b>0</b> other in the pool, to be shared. Keep or use them in <a href="">Other</a></CardText>
                     <table>
                       <tr>
                         <th>Week</th>
                         <th>Amount</th>
                       </tr>
                       <tr>
-                        <td>Week 8</td>
+                        <td>8</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
                         <td>6</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>5</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 7</td>
                         <td>4</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 6</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <td>Week 5</td>
                         <td>3</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 4</td>
-                        <td>4</td>
+                        <td>2</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td>Week 3</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <td>Week 2</td>
-                        <td>3</td>
-                      </tr>
-                      <tr>
-                        <td>Week 1</td>
-                        <td>4</td>
+                        <td>1</td>
+                        <td>0</td>
                       </tr>
                     </table>
                   </CardBody>

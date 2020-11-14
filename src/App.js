@@ -85,13 +85,11 @@ function App() {
                   <div className="d-block mt-4">
                     <a href="https://solana.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={madeForSolanaLogo} alt="" /></a>
                     <a href="https://discord.gg/yQKxdsXVNb" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={joinOnDiscordLogo} alt="" /></a>
-                    <a href="https://laiello.com/" target="_blank" rel="noreferrer"><img className="w-25 mt-2" style={{opacity: 0.7}} src={forAndroidLogo} alt="" /></a>
+                    <img className="w-25 mt-2" style={{opacity: 0.7}} src={forAndroidLogo} alt="" />
                   </div>
                 </Col>
               </Row>
             </Container>
-            <br></br>
-            <br></br>
             <Counter />
             <a name="about"><About /></a>
             <a name="statistics"><Statistics /></a>
