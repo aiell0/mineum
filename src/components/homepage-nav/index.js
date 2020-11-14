@@ -49,16 +49,16 @@ export default function HomepageNavBar({onLogin}) {
       </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink active href="#">Miner</NavLink>
+          <NavLink active href="#" style={{color: '#c1c2c3'}}>Miner</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#statistics"><i className="fas fa-chart-area"></i> Statistics</NavLink>
+          <NavLink href="#statistics" style={{color: '#c1c2c3'}}><i className="fas fa-chart-area"></i>&nbsp; Statistics</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#rankings"><i className="fas fa-trophy"></i> Rankings</NavLink>
+          <NavLink href="#rankings" style={{color: '#c1c2c3'}}><i className="fas fa-trophy"></i>&nbsp; Rankings</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#about"><i className="fas fa-info"></i> About</NavLink>
+          <NavLink href="#about" style={{color: '#c1c2c3'}}><i className="fas fa-info"></i>&nbsp; About</NavLink>
         </NavItem>
         <NavItem></NavItem>
         <NavItem>

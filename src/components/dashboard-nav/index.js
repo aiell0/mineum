@@ -49,13 +49,13 @@ export default function DashboardNavBar({onLogout}) {
       </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink active href="#">Miner</NavLink>
+          <NavLink active href="#" style={{color: '#c1c2c3'}}>Miner</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#rewards"><i className="fas fa-medal"></i> Rewards</NavLink>
+          <NavLink href="#rewards" style={{color: '#c1c2c3'}}><i className="fas fa-medal"></i>&nbsp; Rewards</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#settings"><i className="fas fa-cogs"></i> Settings</NavLink>
+          <NavLink href="#settings" style={{color: '#c1c2c3'}}><i className="fas fa-cogs"></i>&nbsp; Settings</NavLink>
         </NavItem>
         <NavItem>
           <GoogleLogout
