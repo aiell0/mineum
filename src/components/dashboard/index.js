@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import {React, useState, useEffect} from 'react';
+import AWS from 'aws-sdk';
 import {
   Container,
   Row,
@@ -20,6 +21,14 @@ import Counter from '../counter';
 import Rewards from '../rewards';
 import Settings from '../settings';
 
+AWS.config.update({
+  region: 'us-east-1',
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+});
+
+const docClient = new AWS.DynamoDB.DocumentClient();
+
 /**
  * Create User in Database.
  * @param {string} firstName - User's first name.
@@ -27,53 +36,67 @@ import Settings from '../settings';
  * @param {string} googleId - User's unique Google ID.
  */
 function createUser(firstName, lastName, googleId) {
-  console.log(`Adding new user "${googleId}" to database.`);
-  fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users`, {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  const user = {
+    TableName: 'Mineum',
+    Item: {
+      'googleId': googleId,
+      'userName': `${firstName} ${lastName}`,
+      'epochRewards': 0,
+      'totalRewards': 0,
+      'secondsMined': 0,
+      'solWallet': '',
     },
-    body: `googleId=${googleId}&firstName=${firstName}&lastName=${lastName}`,
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
+  };
+  docClient.put(user, (err, data) => {
+    if (err) {
+      console.error('Unable to add user ', googleId, '. Error JSON:', JSON.stringify(err, null, 2));
     } else {
-      throw new Error(`User "${googleId}" could not be added to database.`);
+      console.log('PutItem succeeded:', data);
     }
-  }).then((jsonResponse) => {
-    console.log(`User ${googleId} has been added to the database.`);
-    console.log(jsonResponse);
-  }).catch((error) => {
-    console.error(error);
   });
 };
 
 /**
  * Create User in Database.
  * @param {string} googleId - User's google ID.
- * @param {string} sessionRewards - User session rewards.
+ * @param {number} sessionRewards - User session rewards.
  * @param {number} secondsMined - Number of seconds user mined during this session.
  */
 function updateUser(googleId, sessionRewards, secondsMined) {
-  console.log(`Updating user ${googleId}`);
-  fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users`, {
-    method: 'put',
-    headers: {
-      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  const user = {
+    TableName: 'Mineum',
+    Key: {
+      'googleId': googleId,
     },
-    body: `googleId=${googleId}&rewardsThisSession=${sessionRewards}&secondsMined=${secondsMined}`,
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
+  };
+
+  docClient.get(user, (err, data) => {
+    if (err) {
+      console.error('Unable to read item. Error JSON:', JSON.stringify(err, null, 2));
     } else {
-      throw new Error(`Error while adding rewards for user ${googleId}`);
+      console.log('GetItem succeeded:', JSON.stringify(data, null, 2));
+      const updatedUser = {
+        TableName: 'Mineum',
+        Key: {
+          'googleId': googleId,
+        },
+        UpdateExpression: 'set secondsMined=:secondsMined, epochRewards=:epochRewards',
+        ExpressionAttributeValues: {
+          ':secondsMined': data['Item']['secondsMined'] + secondsMined,
+          ':epochRewards': data['Item']['epochRewards'] + sessionRewards,
+        },
+        ReturnValues: 'UPDATED_NEW',
+      };
+
+      console.log('Updating user...');
+      docClient.update(updatedUser, (err, data) => {
+        if (err) {
+          console.error('Unable to update item. Error JSON:', JSON.stringify(err, null, 2));
+        } else {
+          console.log('UpdateItem succeeded:', JSON.stringify(data, null, 2));
+        }
+      });
     }
-  }).then((jsonResponse) => {
-    console.log(`${rewards} SOL rewards for user ${googleId} added.`);
-    console.log(`${secondsMined} seconds mined for user ${googleId} added.`);
-    console.log(jsonResponse);
-  }).catch((error) => {
-    console.error(error);
   });
 };
 
@@ -98,7 +121,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
   const baseRewardRate = .0000001;
   const secondsInWeek = 604800;
   const [reward, setReward] = useState(0);
-  const [rewardsThisEpoch, setRewardsThisEpoch] = useState(0);
+  const [epochRewards, setEpochRewards] = useState(0);
   const [timer, setTimer] = useState(0);
   const [formattedTime, setFormattedTime] = useState('00:00:00');
   const [isMining, setIsMining] = useState(false);
@@ -137,21 +160,25 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
   });
 
   useEffect(() => {
-    // getting the user from database only once
-    fetch(`http://${process.env.REACT_APP_MINEUM_DB_IP_ADDRESS}:${process.env.REACT_APP_MINEUM_DB_PORT}/users/${googleId}`).then((response) => {
-      if (response.ok) {
-        console.log(`User "${googleId} was found.`);
-        return response.json();
+    const user = {
+      TableName: 'Mineum',
+      Key: {
+        'googleId': googleId,
+      },
+    };
+
+    docClient.get(user, (err, data) => {
+      if (err) {
+        console.error('Unable to read item. Error JSON:', JSON.stringify(err, null, 2));
       } else {
-        throw new Error(`User "${googleId}" does not exist.`);
+        // no user
+        if (Object.keys(data).length == 0) {
+          console.log('First time user is logging in. Creating...');
+          createUser(firstName, lastName, googleId);
+        }
+        setEpochRewards(data['Item']['epochRewards']);
+        setProgressPercent(Math.ceil(data['Item']['secondsMined'] / secondsInWeek));
       }
-    }).then((jsonResponse) => {
-      setRewardsThisEpoch(parseFloat(jsonResponse['rewardsThisEpoch']));
-      setProgressPercent(Math.ceil(jsonResponse['secondsMined'] / secondsInWeek));
-      console.log(progressPercent);
-    }).catch((error) => {
-      console.error(error);
-      createUser(firstName, lastName, googleId);
     });
 
     // getting total users
@@ -225,7 +252,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
           </Row>
         </div>
       </Container>
-      <a name="rewards"><Rewards epochRewards={rewardsThisEpoch} /></a>
+      <a name="rewards"><Rewards epochRewards={epochRewards} /></a>
       <a name="settings"><Settings /></a>
     </>
   );
