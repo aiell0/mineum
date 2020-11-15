@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import {React, useState, useEffect} from 'react';
-import counterStyle from '../../css/counter.module.css';
 
 /**
  * Counter component to show time until end of rewards epoch.
@@ -50,21 +49,21 @@ export default function Counter() {
 
   return (
     <center>
-      <div id={`${counterStyle['countholder']}`} >
+      <div id='countholder' >
         <div>
-          <span className={counterStyle.days} id="days">{days}</span>
+          <span className="days" id="days">{days}</span>
           <div className="smalltext">Days</div>
         </div>
         <div>
-          <span className={counterStyle.hours} id="hours">{((hours < 10) ? '0' : '') + hours}</span>
+          <span className="hours" id="hours">{((hours < 10) ? '0' : '') + hours}</span>
           <div className="smalltext">Hours</div>
         </div>
         <div>
-          <span className={counterStyle.minutes} id="minutes">{((minutes < 10) ? '0' : '') + minutes}</span>
+          <span className="minutes" id="minutes">{((minutes < 10) ? '0' : '') + minutes}</span>
           <div className="smalltext">Minutes</div>
         </div>
         <div>
-          <span className={counterStyle.seconds} id="seconds">{seconds}</span>
+          <span className="seconds" id="seconds">{seconds}</span>
           <div className="smalltext">Seconds</div>
         </div>
         <p>

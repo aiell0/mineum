@@ -7,11 +7,11 @@ import {Container, Row, Col} from 'shards-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
 import 'shards-ui/dist/css/shards-extras.min.css';
+// import welcomeStyle from './css/shards-demo.module.css';
 import bigLogo from './images/Mineumlogo1.png';
 import madeForSolanaLogo from './images/madeforsolana.png';
 import joinOnDiscordLogo from './images/joinondiscord.png';
 import forAndroidLogo from './images/forandroid.png';
-// import fogStyle from './css/fog.module.css';
 import Statistics from './components/statistics';
 import Rankings from './components/rankings';
 import Counter from './components/counter';
@@ -23,24 +23,24 @@ import Dashboard from './components/dashboard';
 require('dotenv').config();
 
 /* eslint-disable require-jsdoc */
-// function FogAnimation() {
-//   return (
-//     <>
-//       <div id={`${fogStyle['foglayer_01']}`} className='fog'>
-//         <div className='image01'></div>
-//         <div className='image02'></div>
-//       </div>
-//       <div id={`${fogStyle['foglayer_02']}`} className='fog'>
-//         <div className='image01'></div>
-//         <div className='image02'></div>
-//       </div>
-//       <div id={`${fogStyle['foglayer_03']}`} className='fog'>
-//         <div className='image01'></div>
-//         <div className='image02'></div>
-//       </div>
-//     </>
-//   );
-// };
+function FogAnimation() {
+  return (
+    <>
+      <div id='foglayer_01' className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+      <div id='foglayer_02' className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+      <div id='foglayer_03' className='fog'>
+        <div className='image01'></div>
+        <div className='image02'></div>
+      </div>
+    </>
+  );
+};
 
 /**
  * Main React App.
@@ -73,8 +73,9 @@ function App() {
       <Route exact path="/">
         {isLoggedIn ? <Redirect to="/dashboard" /> :
           <div className="App">
+            <FogAnimation />
             <HomepageNavBar onLogin={handleLogin} />
-            < Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
+            <Container className={`inner-wrapper mt-auto mb-autoinner-wrapper mt-auto mb-auto`}>
               <Row>
                 <Col sm={'12'} md={'5'} lg={'5'} className={'mt-auto mb-auto mr-3'}>
                   <br></br>
