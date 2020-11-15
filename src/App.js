@@ -20,27 +20,8 @@ import About from './components/about';
 import Footer from './components/footer';
 import HomepageNavBar from './components/homepage-nav';
 import Dashboard from './components/dashboard';
+import FogAnimation from './components/fog-animation';
 require('dotenv').config();
-
-/* eslint-disable require-jsdoc */
-function FogAnimation() {
-  return (
-    <>
-      <div id='foglayer_01' className='fog'>
-        <div className='image01'></div>
-        <div className='image02'></div>
-      </div>
-      <div id='foglayer_02' className='fog'>
-        <div className='image01'></div>
-        <div className='image02'></div>
-      </div>
-      <div id='foglayer_03' className='fog'>
-        <div className='image01'></div>
-        <div className='image02'></div>
-      </div>
-    </>
-  );
-};
 
 /**
  * Main React App.

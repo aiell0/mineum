@@ -20,6 +20,7 @@ import DashboardNavBar from '../dashboard-nav';
 import Counter from '../counter';
 import Rewards from '../rewards';
 import Settings from '../settings';
+import FogAnimation from '../fog-animation';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -209,6 +210,7 @@ export default function Dashboard({onLogout, firstName, lastName, googleId}) {
 
   return (
     <>
+      <FogAnimation />
       <DashboardNavBar onLogout={handleOnIdle} />
       <Container>
         <div className="py-4">

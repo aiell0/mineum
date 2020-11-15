@@ -13,6 +13,16 @@ import {
 } from 'shards-react';
 
 /**
+ * Converts from lamports to SOL.
+ * @param {number} lamports
+ * @return {number} SOL denomination
+ */
+function lamportToSol(lamports) {
+  const conversionRate = 0.000000001;
+  return lamports * conversionRate;
+}
+
+/**
  * Shows statistics for Mineum.
  * @return {React} Statistics section.
  */
@@ -42,7 +52,7 @@ export default function Statistics() {
     const connection = new solanaWeb3.Connection('https://devnet.solana.com');
     const publicKey = new solanaWeb3.PublicKey(`${process.env.REACT_APP_MINEUM_ADDRESS}`);
     connection.getBalance(publicKey).then((balance) => {
-      setPoolBalance(balance / 1000000000); // balance comes in orders of magnitude higher for some reason
+      setPoolBalance(lamportToSol(balance));
     }).catch((error) => {
       console.error(error);
       setPoolBalance('-');
